@@ -46,11 +46,14 @@ def exportToCSV():
         setString = ""
         firstElement = True
         
+        print len(results)
+        
         for tweetData in results:
             tweet = json.loads(json.dumps(tweetData.value))
             
             if firstElement:
                 setString = "\"" + str(tweet['_id']) + "\",\"" + re.sub(r"\"", " ", tweet['value']) + "\""
+                firstElement = False
             else:
                 setString += ",\"" + str(tweet['_id']) + "\",\"" + re.sub(r"\"", " ", tweet['value']) + "\""
         
