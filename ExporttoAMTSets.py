@@ -46,7 +46,7 @@ def exportToCSV():
         setString = ""
         firstElement = True
         
-        print len(results)
+        print "Size of set", hitSetNum , ":", len(results)
         
         for tweetData in results:
             tweet = json.loads(json.dumps(tweetData.value))
