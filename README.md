@@ -10,3 +10,7 @@ This repository includes:
 						CouchDB database.
 	
 	ExporttoAMTSets :	Exports tweets to a CSV file, in sets of 50, to be uploaded to AMT.
+	
+	ScoreAnalyzer :		Analyzes score after input from AMT CSV File.
+	
+	CheckDuplicates :	Checks and removes any duplicate tweets based on tweet ID.

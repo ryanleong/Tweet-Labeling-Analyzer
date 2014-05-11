@@ -4,14 +4,24 @@ import couchdb
 import json
 
 # calculate average of score for each tweet
-def firstPass(tweet):
-    totalRating = 0
+def firstPass(results, db):
     
-    # calculate average
-    for rating in tweet['worker_ratings']:
-        totalRating += rating['rating']
+    for tweet in results:
+        tweet = json.loads(json.dumps(tweet.value))
+        
+        totalRating = 0
+        
+        # calculate average
+        for rating in tweet['worker_ratings']:
+            totalRating += rating['rating']
 
-    return (float(totalRating) / len(tweet['worker_ratings']))
+        # save to tweet doc
+        tweet['first_pass'] = (float(totalRating) / len(tweet['worker_ratings']))
+        
+        # save score to db
+        db.save(tweet)
+        
+    return results
 
 def updateWorkerData(db, results):
     
@@ -86,15 +96,8 @@ if __name__ == "__main__":
 
     results = db.query(map_fun,key="tweet")
     
-    for tweet in results:
-        tweet = json.loads(json.dumps(tweet.value))
-        
-        # calculate score
-        score = firstPass(tweet)
-        
-        # save to tweet doc
-        tweet['first_pass'] = score
-        db.save(tweet)
+    # execute first pass
+    results = firstPass(results, db)
 
     # update worker with weights
     updateWorkerData(db, results)
