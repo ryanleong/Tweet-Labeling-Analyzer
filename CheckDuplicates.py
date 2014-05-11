@@ -13,15 +13,15 @@ def checkAndRemove(tweet):
     #connect to db
     couch = couchdb.Server('http://127.0.0.1:5984')
     db = couch[database_name]
-    map_fun = '''function(doc) { emit(doc.tweetID,doc); }'''
+    map_fun = '''function(doc) { emit(doc.tweet_id,doc); }'''
     
     #get all duplicates
-    results = db.query(map_fun,key=tweet['tweetID'])
+    results = db.query(map_fun,key=tweet['tweet_id'])
     
     # remove only if returns more than 1
     if len(results) > 1:
         isSelf = True
-        print "Found ducplicate. ID: ", tweet['tweetID']
+        print "Found ducplicate. ID: ", tweet['tweet_id']
         
         for result in results:
             
@@ -34,10 +34,10 @@ def checkAndRemove(tweet):
                 
                 # delete entry from db
                 db.delete(temp)
-                print "Deleted tweet ID: ", tweet['tweetID']
+                print "Deleted tweet ID: ", tweet['tweet_id']
         
         # write log
-        entry = str(len(results) - 1) + " duplicates found and deleted for tweet " + str(tweet['tweetID']) + ". Expert Rating:" + str(tweet['expertRating']) + ".\n"
+        entry = str(len(results) - 1) + " duplicates found and deleted for tweet " + str(tweet['tweet_id']) + ". Expert Rating:" + str(tweet['expert_rating']) + ".\n"
         with open("checkDuplicateLog.txt", "a") as myfile:
             myfile.write(entry)
 

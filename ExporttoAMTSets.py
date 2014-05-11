@@ -26,7 +26,7 @@ def exportToCSV():
     couch = couchdb.Server('http://127.0.0.1:5984')
     
     # set database to query
-    db = couch['twitter_data']
+    db = couch['final_tweet_db']
     
     # map function
     map_function = '''function(doc) { emit(doc.set,doc); }'''
@@ -52,10 +52,10 @@ def exportToCSV():
             tweet = json.loads(json.dumps(tweetData.value))
             
             if firstElement:
-                setString = "\"" + str(tweet['_id']) + "\",\"" + re.sub(r"\"", " ", tweet['value']) + "\""
+                setString = "\"" + str(tweet['tweet_id']) + "\",\"" + re.sub(r"\"", " ", tweet['value']) + "\""
                 firstElement = False
             else:
-                setString += ",\"" + str(tweet['_id']) + "\",\"" + re.sub(r"\"", " ", tweet['value']) + "\""
+                setString += ",\"" + str(tweet['tweet_id']) + "\",\"" + re.sub(r"\"", " ", tweet['value']) + "\""
         
         
         # write to file

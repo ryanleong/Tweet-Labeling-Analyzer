@@ -1,3 +1,6 @@
+#!/usr/bin/env python
+# encoding: utf-8
+
 import re
 import couchdb
 
@@ -13,7 +16,7 @@ def importFromFile():
     couch = couchdb.Server('http://127.0.0.1:5984')
     
     # set database to query
-    db = couch['twitter_data']
+    db = couch['test_tweet']
 
     tweetsPerSet = 0
     hitSetNum = 0
@@ -40,8 +43,11 @@ def importFromFile():
             tweet = re.sub(r"(?:\@|https?\:)\S+", "", tweet)
         
         # create and insert doc to db
-        doc = {'expertRating': lineParts[0], 'tweetID' : lineParts[1], 
-               'value': tweet, 'set': hitSetNum}
+#         doc = {'expertRating': int(lineParts[0]), 'tweetID' : lineParts[1], 
+#                'value': tweet, 'set': hitSetNum, 'workerRatings': [{'workerID': 3782, 'rating': 4}]}
+        doc = {'expert_rating': int(lineParts[0]), 'tweet_id' : lineParts[1], 
+               'value': tweet, 'set': hitSetNum, 'doc_type': 'tweet', 'worker_ratings': []}
+        
         db.save(doc)
         
         tweetsPerSet += 1
