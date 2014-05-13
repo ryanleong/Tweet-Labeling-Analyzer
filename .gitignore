@@ -38,9 +38,9 @@ coverage.xml
 *.mo
 
 # Mr Developer
-.mr.developer.cfg
-.project
-.pydevproject
+#.mr.developer.cfg
+#.project
+#.pydevproject
 
 # Rope
 .ropeproject
@@ -51,4 +51,7 @@ coverage.xml
 
 # Sphinx documentation
 docs/_build/
+
+# Additional
+sets.csv
 
