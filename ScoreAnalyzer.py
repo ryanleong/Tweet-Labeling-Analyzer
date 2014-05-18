@@ -58,7 +58,6 @@ def nextPass(db):
         
     # update worker with weights
     updateWorkerData()
-                
 
 def writeToDB(db):
     # write workers to DB

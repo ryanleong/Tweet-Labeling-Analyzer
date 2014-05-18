@@ -2,6 +2,9 @@ import couchdb
 import json
 import re
 
+# Database name
+database = 'final_tweets'
+
 def writeCSVHeader() :
     header = ""
     hitSetNum = 0
@@ -26,7 +29,7 @@ def exportToCSV():
     couch = couchdb.Server('http://127.0.0.1:5984')
     
     # set database to query
-    db = couch['final_tweet_db']
+    db = couch[database]
     
     # map function
     map_function = '''function(doc) { emit(doc.set,doc); }'''
