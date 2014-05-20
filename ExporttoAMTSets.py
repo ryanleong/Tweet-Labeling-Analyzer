@@ -4,6 +4,7 @@ import re
 
 # Database name
 database = 'final_tweets'
+databaseIP = 'http://127.0.0.1:5984'
 
 def writeCSVHeader() :
     header = ""
@@ -26,7 +27,7 @@ def writeCSVHeader() :
 def exportToCSV():
     
     # database IP
-    couch = couchdb.Server('http://127.0.0.1:5984')
+    couch = couchdb.Server(databaseIP)
     
     # set database to query
     db = couch[database]

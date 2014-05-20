@@ -3,13 +3,29 @@
 
 import re
 import couchdb
+import sys
 
-# Database name
-database = 'final_tweets'
+databaseIP = ''#'http://127.0.0.1:5984'
+database = ''#'final_tweets'
+
+# get command line arguements
+if len(sys.argv) != 3:
+    print 'python ImportFromDataFile.py <database_ip> <database_name>'
+    exit()
+else:
+    # Database IP
+    databaseIP = str(sys.argv[1])
+
+    # Database name
+    database = str(sys.argv[2])
 
 def currentStats():
-    # database IP    
-    couch = couchdb.Server('http://127.0.0.1:5984')
+    # database IP
+    try:
+        couch = couchdb.Server(databaseIP)
+    except:
+        print "Could not connect to database IP."
+        exit()
     
     # set database to query
     db = couch[database]
@@ -69,18 +85,28 @@ def importFromFile():
     print "Starting import.."
     count = 0
     
-    # read from file
-    with open('Tweets2000.dat', 'r') as fileContent:
-        content = fileContent.readlines()
-    
-    # database IP    
-    couch = couchdb.Server('http://127.0.0.1:5984')
-    
-    # set database to query
-    db = couch[database]
-    
-#     print inDB("234435558714784257", db)
-#     exit()
+    try:
+        # read from file
+        with open('data/Tweets2000.dat', 'r') as fileContent:
+            content = fileContent.readlines()
+    except:
+        print "No such file in directory."
+        exit()
+
+    try:
+        # database IP    
+        couch = couchdb.Server(databaseIP)
+    except:
+        print "Could not connect to database IP."
+        exit()
+
+    try:
+        db = couch.create(database)
+        print "database created"
+    except:
+        # set database to query
+        db = couch[database]
+        print "database set"
 
     tweetsPerSet = 0
     hitSetNum = 0

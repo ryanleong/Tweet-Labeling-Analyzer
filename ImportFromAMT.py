@@ -7,13 +7,14 @@ def importResults(db):
     columnRef = {}
     isHeader = True
     columnNumber = 0
+    entries = 0
 
     labelColumn = -1
     workerIDColumn = -1
 
     # couchdb map function
-    map_fun = '''function(doc) {
-    emit(doc.tweet_id,doc); }'''
+    map_fun = '''function(doc) { if(doc.doc_type == "tweet") {}
+    emit(doc.tweet_id,doc); } }'''
 
     reader = csv.reader(open('results.csv', 'rb'))
 
@@ -48,7 +49,7 @@ def importResults(db):
 
         # if not header
         else:
-            workerid = "";
+            workerid = ""
 
             for element in row:
 
@@ -59,8 +60,9 @@ def importResults(db):
                 # get labelling
                 if columnNumber >= labelColumn:
                     
+                    # check if column is empty
                     if element != "":
-
+                        entries += 1
                         results = db.query(map_fun,key=str(columnRef[columnNumber]))
 
                         for tweet in results:
@@ -82,11 +84,14 @@ def importResults(db):
                                 # store to db
                                 db.save(tweet)
                             else:
-                                print element, "already in DB."
+                                #print element, "already in DB."
+                                pass
 
 
                 # increment column number
                 columnNumber += 1
+            print "Number of answered questions for:", entries
+            entries = 0
 
 
 
