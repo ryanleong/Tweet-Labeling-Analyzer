@@ -3,7 +3,7 @@ import couchdb
 import math
 
 # Database name
-database = 'final_tweets'
+database = 'nbn_test'
 
 allData = []
 

@@ -3,8 +3,10 @@ import json
 import re
 
 # Database name
-database = 'final_tweets'
+database = 'flu'
 databaseIP = 'http://127.0.0.1:5984'
+
+filename = database + 'sets.csv'
 
 def writeCSVHeader() :
     header = ""
@@ -21,7 +23,7 @@ def writeCSVHeader() :
         hitSetNum += 1
         
     # write header of csv to file
-    with open("sets.csv", "w") as myfile:
+    with open(filename, "w") as myfile:
         myfile.write(header + "\n")
 
 def exportToCSV():
@@ -40,7 +42,7 @@ def exportToCSV():
     
     hitSetNum = 0
     
-    f = open("sets.csv", "a")
+    f = open(filename, "a")
     
     while hitSetNum < 30:
     

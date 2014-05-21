@@ -4,35 +4,22 @@ import re
 import sys
 
 databaseIP = ''     #'http://127.0.0.1:5984'
-database = 'all_tweets'
+database = 'nbn'
+database2 = 'flu'
+
+filename = 'results_nbn.dat'
+filename2 = 'results_flu.dat'
 
 # get command line arguements
 if len(sys.argv) != 2:
-    print 'python ExportToCSV.py <database_ip>'
+    print 'python Export.py <database_ip>'
     exit()
 else:
     # Database IP
     databaseIP = str(sys.argv[1])
 
-def writeCSVHeader() :
-    header = ""
-    hitSetNum = 0
-    
-    # form header string
-    while hitSetNum < 50:
-        
-        if hitSetNum == 0:
-            header = "\"docID" + str(hitSetNum) + "\",\"tweet" + str(hitSetNum) + "\""
-        else:
-            header += ",\"docID" + str(hitSetNum) + "\",\"tweet" + str(hitSetNum) + "\""
-            
-        hitSetNum += 1
-        
-    # write header of csv to file
-    with open("sets.csv", "w") as myfile:
-        myfile.write(header + "\n")
 
-def exportToCSV():
+def export():
     
     # database IP
     couch = couchdb.Server(databaseIP)
@@ -43,7 +30,7 @@ def exportToCSV():
     # map function
     map_function = '''function(doc) { emit(null,doc); }'''
     
-    f = open("results.dat", "w")
+    f = open(filename, "w")
     
     # query from db
     results = db.query(map_function)
@@ -62,4 +49,10 @@ def exportToCSV():
 
 if __name__ == "__main__":
     # export to CSV
-    exportToCSV()
+    export()
+
+    # change settings
+    database = database2
+    filename = filename2
+
+    export()

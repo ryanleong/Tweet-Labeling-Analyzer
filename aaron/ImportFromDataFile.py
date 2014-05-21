@@ -6,7 +6,11 @@ import couchdb
 import sys
 
 databaseIP = ''     #'http://127.0.0.1:5984'
-database = 'all_tweets'
+database = 'nbn'
+database2 = 'flu'
+
+inputFile = 'Tweets2000.dat'
+inputFile2 = 'Flu1500.dat'
 
 # get command line arguements
 if len(sys.argv) != 2:
@@ -40,13 +44,12 @@ def inDB(tweetID, tweet, db):
     return inDatabase
 
 def importFromFile():
-    
-    print "Starting import.."
+
     count = 0
     
     try:
         # read from file
-        with open('Tweets2000.dat', 'r') as fileContent:
+        with open(inputFile, 'r') as fileContent:
             content = fileContent.readlines()
     except:
         print "No such file in directory."
@@ -120,5 +123,16 @@ def importFromFile():
     print "Import complete."
 
 if __name__ == "__main__":
+
+    print "Starting nbn import.."
+
     # Run import
     importFromFile()
+
+    # change settings
+    database = database2
+    inputFile = inputFile2
+
+    print "Starting flue import.."
+    importFromFile()
+

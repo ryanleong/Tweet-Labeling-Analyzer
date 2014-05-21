@@ -2,6 +2,10 @@ import csv
 import couchdb
 import json
 
+filename = 'Batch_1540632_batch_results.csv'
+databaseIP = 'http://127.0.0.1:5984'
+database = 'results/nbn_test'
+
 def importResults(db):
     database = []
     columnRef = {}
@@ -13,10 +17,10 @@ def importResults(db):
     workerIDColumn = -1
 
     # couchdb map function
-    map_fun = '''function(doc) { if(doc.doc_type == "tweet") {}
-    emit(doc.tweet_id,doc); } }'''
+    map_fun = '''function(doc) { if(doc.doc_type == "tweet"){
+    emit(doc.tweet_id, doc); }}'''
 
-    reader = csv.reader(open('results.csv', 'rb'))
+    reader = csv.reader(open(filename, 'rb'))
 
     for row in reader:
         # rest column count
@@ -50,12 +54,17 @@ def importResults(db):
         # if not header
         else:
             workerid = ""
+            assignmentid = ""
 
             for element in row:
 
                 # get woker ID
                 if columnNumber == workerIDColumn:
                     workerid = element
+
+                # get assignment ID
+                if columnNumber == 15:
+                    assignmentid == element
 
                 # get labelling
                 if columnNumber >= labelColumn:
@@ -78,13 +87,15 @@ def importResults(db):
 
                             if inDB == False:
                                 # store data
+                                #temp = json.loads('{"worker_id" : "%s", "rating": %d, "assignment_id": "%s"}' % (workerid, int(element), assignmentid))
                                 temp = json.loads('{"worker_id" : "%s", "rating": %d}' % (workerid, int(element)))
+                                
                                 tweet['worker_ratings'].append(temp)
 
                                 # store to db
                                 db.save(tweet)
                             else:
-                                #print element, "already in DB."
+                                print element, "already in DB."
                                 pass
 
 
@@ -98,9 +109,9 @@ def importResults(db):
 if __name__ == "__main__":
 
     # database IP    
-    couch = couchdb.Server('http://127.0.0.1:5984')
+    couch = couchdb.Server(databaseIP)
     
     # set database to query
-    db = couch['test_final']
+    db = couch[database]
 
     importResults(db)
