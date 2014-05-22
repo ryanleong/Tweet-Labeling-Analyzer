@@ -11,7 +11,7 @@ database = ''#'final_tweets'
 # inputFile = 'data/Tweets2000.dat'
 inputFile = 'data/Flu1500.dat'
 
-skipDuplicates = False
+skipDuplicates = True
 
 # get command line arguements
 if len(sys.argv) != 3:

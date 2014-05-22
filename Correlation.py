@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 import couchdb
 import math
+import sys
 
 # Database
 database = ''
@@ -41,7 +42,14 @@ def getCorrelation():
 
     print "Correlation: ", (top / bottom)
 
+def convertScale(score):
 
+    if score < 2.5:
+        return 0
+    elif score >= 2.5 and score < 3.5:
+        return 1
+    else:
+        return 2
 
 if __name__ == "__main__":
     
@@ -52,12 +60,18 @@ if __name__ == "__main__":
     db = couch[database]
     
     map_fun = '''function(doc) {
-    emit(doc.tweet_id,null); }'''
+    emit(doc.tweet_id, {"expert_rating" : doc.expert_rating, "average" : doc.average}); }'''
     
-    results = db.iterview('_design/getratings/_view/expert',2000)
+    # results = db.iterview('_design/getratings/_view/expert',2000)
+    results = db.query(map_fun)
     
     for tweet in results:
 
-        allData.append((tweet.key, tweet.value, tweet.value))
+        # print convertScale(tweet.value['average']), tweet.value['expert_rating']
+        # exit()
+        
+        if len(tweet.value) < 2:
+            continue
+        allData.append((tweet.key, tweet.value['expert_rating'], convertScale(tweet.value['average'])))
 
     getCorrelation()

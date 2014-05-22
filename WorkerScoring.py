@@ -53,9 +53,6 @@ def firstAverage(results):
         # Store tweet in tweet dictionary
         tweetDict[tweet['tweet_id']] = tweet
 
-        #newDB.save(tweet)
-
-
 # For workers
 def removeBias():
     # print workersDict['AUBB8KU9XV2R8']
@@ -153,7 +150,8 @@ def returnToDB():
     for tweetKey, tweetDoc in tweetDict.iteritems():
 
         # del tweetDoc['_rev']
-
+        if tweetDoc['average'] == None:
+            print tweetDoc['tweet_id'], " has no average."
         db.save(tweetDoc)
 
 if __name__ == "__main__":
