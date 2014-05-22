@@ -2,10 +2,20 @@
 import couchdb
 import math
 
-# Database name
-database = 'nbn_test'
+# Database
+database = ''
+databaseIP = 'http://127.0.0.1:5984'
 
 allData = []
+
+# get command line arguements
+if len(sys.argv) != 2:
+    print 'python Correlation.py <database_name>'
+    exit()
+else:
+    # Database name
+    database = str(sys.argv[1])
+
 
 def getCorrelation():
 
@@ -36,7 +46,7 @@ def getCorrelation():
 if __name__ == "__main__":
     
     # database IP    
-    couch = couchdb.Server('http://127.0.0.1:5984')
+    couch = couchdb.Server(databaseIP)
     
     # set database to query
     db = couch[database]

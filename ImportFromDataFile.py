@@ -72,10 +72,7 @@ def importFromFile():
         print "database created"
     except:
         # set database to query
-        db = cs
-
-
-        ouch[database]
+        db = couch[database]
         print "database set"
 
     tweetsPerSet = 0

@@ -1,10 +1,22 @@
 import csv
 import couchdb
 import json
+import sys
 
-filename = 'Batch_1540632_batch_results.csv'
+filename = ''
 databaseIP = 'http://127.0.0.1:5984'
-database = 'results/nbn_test'
+database = ''
+
+# get command line arguements
+if len(sys.argv) != 2:
+    print 'python ImportFromAMT.py <database_name>'
+    exit()
+else:
+    # Database name
+    database = str(sys.argv[1])
+
+    # Filename
+    filename = 'results/%s.csv' % (database)
 
 def importResults(db):
     database = []
@@ -15,6 +27,7 @@ def importResults(db):
 
     labelColumn = -1
     workerIDColumn = -1
+    assignmentidColumn = -1
 
     # couchdb map function
     map_fun = '''function(doc) { if(doc.doc_type == "tweet"){
@@ -46,6 +59,12 @@ def importResults(db):
                     if workerIDColumn == -1:
                         workerIDColumn = columnNumber
 
+                # find assignmentID column
+                if "AssignmentId" in element:
+                    # store assignment id column
+                    if assignmentidColumn == -1:
+                        assignmentidColumn = columnNumber
+
                 # increment column number
                 columnNumber += 1
 
@@ -63,8 +82,8 @@ def importResults(db):
                     workerid = element
 
                 # get assignment ID
-                if columnNumber == 15:
-                    assignmentid == element
+                if columnNumber == assignmentidColumn:
+                    assignmentid = element
 
                 # get labelling
                 if columnNumber >= labelColumn:
@@ -101,7 +120,8 @@ def importResults(db):
 
                 # increment column number
                 columnNumber += 1
-            print "Number of answered questions for:", entries
+
+            print "Assignment", assignmentid, "has only", entries, "entries"
             entries = 0
 
 
