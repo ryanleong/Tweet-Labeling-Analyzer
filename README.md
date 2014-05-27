@@ -10,7 +10,12 @@ This repository includes:
 						CouchDB database.
 	
 	ExporttoAMTSets :	Exports tweets to a CSV file, in sets of 50, to be uploaded to AMT.
+
+	ImportFromAMT :		Imports data from AMT results CSV into database.
 	
-	ScoreAnalyzer :		Analyzes score after input from AMT CSV File.
+	Analyzer :			Calculates aggregate worker scores and does correlation analysis.
 	
-	CheckDuplicates :	Checks and removes any duplicate tweets based on tweet ID.
+	ExportForGraphs :	Exports data as a CSV file to be opened in Exel, to generate graph.
+
+Prior to running the scripts, CouchDB needs to be installed on the machine. The Python-CouchDB package is required to 
+run the scripts, which can be installed by running "sudo apt-get install python-couchdb"

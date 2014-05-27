@@ -4,18 +4,20 @@
 import couchdb
 import json
 import sys
+import math
 
 # Settings
-database = ''
 databaseIP = 'http://localhost:5984'
+database = ''
+debug = False
 
 # get command line arguements
 if len(sys.argv) != 2:
-    print 'python WorkerScoring.py <database_name>'
+    print 'python WorkerScoring.py <database_ip>'
     exit()
 else:
     # Database name
-    database = str(sys.argv[1])
+    databaseIP = str(sys.argv[1])
 
 
 # DB instance
@@ -154,19 +156,47 @@ def returnToDB():
             print tweetDoc['tweet_id'], " has no average."
         db.save(tweetDoc)
 
-if __name__ == "__main__":
+#######################################################
+def getCorrelation(allData):
 
-    # set up connection to db server
-    couch = couchdb.Server(databaseIP)
-    db = couch[database]
+    n = 1500;
+    totalx = 0
+    totaly = 0
+    totalMul = 0
+    totalXSqSum = 0
+    totalYSqSum = 0
 
-    print "Calculating tweet worker scores.."
+    for data in allData:
+        totalx += data[1]
+        totaly += data[2]
+        totalMul += data[1] * data[2]
+
+        totalXSqSum += (data[1] * data[1])
+        totalYSqSum += (data[2] * data[2])
+
+    top = (n * totalMul) - (totalx * totaly)
+
+    bottom = math.sqrt(((n * totalXSqSum) - (totalx * totalx)) * ((n * totalYSqSum) - (totaly * totaly)))
+
+    print database, "Correlation: ", (top / bottom)
+
+def convertScale(score):
+
+    if score < 2.5:
+        return 0
+    elif score >= 2.5 and score < 3.5:
+        return 1
+    else:
+        return 2
+
+#######################################################
+
+def calculate():
 
     map_fun = '''function(doc) {
         emit(doc.doc_type,doc); }'''
 
     # Get tweets
-    #results = db.iterview('_design/getall/_view/getall',50)
     results = db.query(map_fun,key="tweet")
 
     # Calculate initial average
@@ -190,11 +220,61 @@ if __name__ == "__main__":
         # calculate final sum of squared
         temp = sumOfSquared()
 
-        print "%d. Difference: %f" % (count, (sumSquare - temp))
+        if debug:
+            # print Sum of squared difference at each pass
+            print "%d. Difference: %f" % (count, (sumSquare - temp))
+
+
         if abs(sumSquare - temp) < 0.001:
             break
 
         sumSquare = temp
 
     returnToDB()
+
+    ########################################
+    # Calculate correlation
+    ########################################
+    map_fun = '''function(doc) {
+    emit(doc.tweet_id, {"expert_rating" : doc.expert_rating, "average" : doc.average}); }'''
+    
+    results = db.query(map_fun)
+    allData = []
+    
+    for tweet in results:
+        
+        if len(tweet.value) < 2:
+            continue
+        allData.append((tweet.key, tweet.value['expert_rating'], convertScale(tweet.value['average'])))
+
+    getCorrelation(allData)
+
+if __name__ == "__main__":
+    # set up connection to db server
+    couch = couchdb.Server(databaseIP)
+
+    print "Calculating NBN Worker to Expert Correlation.."
+
+    database = 'nbn_tweets'
+
+    try:
+        db = couch[database]
+    except:
+        print 'No such database.'
+
+    calculate()
+
+    print "Calculating Flu Worker to Expert Correlation.."
+
+    database = 'flu_tweets'
+    workersDict = {}
+    tweetDict = {}
+
+    try:
+        db = couch[database]
+    except:
+        print 'No such database.'
+
+    calculate()
+
 

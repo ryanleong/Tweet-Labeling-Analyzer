@@ -1,12 +1,21 @@
 import couchdb
 import json
 import re
+import sys
 
 # Database name
-database = 'flu'
-databaseIP = 'http://127.0.0.1:5984'
+database = ''
+databaseIP = ''
+filename = ''
 
-filename = database + 'sets.csv'
+# get command line arguements
+if len(sys.argv) != 2:
+    print 'python ExporttoAMTSets.py <database_ip>'
+    exit()
+else:
+    # Database IP
+    databaseIP = str(sys.argv[1])
+
 
 def writeCSVHeader() :
     header = ""
@@ -52,7 +61,7 @@ def exportToCSV():
         setString = ""
         firstElement = True
         
-        print "Size of set", hitSetNum , ":", len(results)
+        #print "Size of set", hitSetNum , ":", len(results)
         
         for tweetData in results:
             tweet = json.loads(json.dumps(tweetData.value))
@@ -70,5 +79,23 @@ def exportToCSV():
         hitSetNum += 1
     
 if __name__ == "__main__":
+
+    print 'Creating NBN HIT sets..'
+
+    # Settings for NBN
+    database = 'nbn_tweets'
+    filename = 'sets/' + database + '_sets.csv'
+
     # export to CSV
     exportToCSV()
+
+    print 'Done!'
+    print 'Creating Flu HIT sets..'
+
+    # Settings for NBN
+    database = 'flu_tweets'
+    filename = 'sets/' + database + '_sets.csv'
+
+    # export to CSV
+    exportToCSV()
+    print 'Done!'

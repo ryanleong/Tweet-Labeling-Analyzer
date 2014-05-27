@@ -5,24 +5,21 @@ import re
 import couchdb
 import sys
 
-databaseIP = ''#'http://127.0.0.1:5984'
-database = ''#'final_tweets'
-
-# inputFile = 'data/Tweets2000.dat'
-inputFile = 'data/Flu1500.dat'
+databaseIP = ''
+database = ''
+inputFile = ''
 
 skipDuplicates = True
 
 # get command line arguements
-if len(sys.argv) != 3:
-    print 'python ImportFromDataFile.py <database_ip> <database_name>'
+if len(sys.argv) != 2:
+    print 'python ImportFromDataFile.py <database_ip>'
     exit()
 else:
     # Database IP
     databaseIP = str(sys.argv[1])
 
-    # Database name
-    database = str(sys.argv[2])
+
 
 def inDB(tweetID, tweet, db):
     inDatabase = False
@@ -48,7 +45,6 @@ def inDB(tweetID, tweet, db):
 
 def importFromFile():
     
-    print "Starting import.."
     count = 0
     
     try:
@@ -69,11 +65,10 @@ def importFromFile():
     try:
         # try to create database
         db = couch.create(database)
-        print "database created"
     except:
         # set database to query
-        db = couch[database]
-        print "database set"
+        print 'Database', database, 'already exist. Delete database before importing.'
+        return
 
     tweetsPerSet = 0
     hitSetNum = 0
@@ -100,17 +95,11 @@ def importFromFile():
             else:
                 tweet = tweet + " " + lineParts[index]
             
+            # Remove URLs, Mentions and other symbols
             tweet = re.sub(r"(?:\@|https?\:)\S+", "", tweet)
-            
             tweet = re.sub(r"&gt;", ">", tweet)
-            
             tweet = re.sub(r"&lt;", "<", tweet)
-            
             tweet = re.sub(r"&amp;", "&", tweet)
-        
-        # create and insert doc to db
-#         doc = {'expertRating': int(lineParts[0]), 'tweetID' : lineParts[1], 
-#                'value': tweet, 'set': hitSetNum, 'workerRatings': [{'workerID': 3782, 'rating': 4}]}
 
         if skipDuplicates == True:
             if inDB(lineParts[1], tweet, db) == False:
@@ -122,8 +111,9 @@ def importFromFile():
                 tweetsPerSet += 1
                 
                 count += 1
-            else:
-                print "Skipped", lineParts[1]
+            # else:
+            #     print "Skipped", lineParts[1]
+
         else:
             doc = {'expert_rating': int(lineParts[0]), 'tweet_id' : lineParts[1], 
                    'value': tweet, 'set': hitSetNum, 'doc_type': 'tweet', 'worker_ratings': []}
@@ -134,54 +124,33 @@ def importFromFile():
             
             count += 1
     
-    db.cleanup()
-    db.compact()
-    
     # print completion
     print "Import complete."
 
-def currentStats():
-    # database IP
-    try:
-        couch = couchdb.Server(databaseIP)
-    except:
-        print "Could not connect to database IP."
-        exit()
-    
-    # set database to query
-    db = couch[database]
-    
-    print "========================================================"
-    print "Current Stats"
-    print "========================================================"
-    
-    results = db.iterview('_design/count/_view/numofagree',2000)
-    
-    for result in results:
-        print "// " ,result.value, "tweets are about NBN."
-        
-    results = db.iterview('_design/count/_view/numofdisagree',2000)
-    
-    for result in results:
-        print "// " ,result.value, "tweets are not about NBN."
-        
-    results = db.iterview('_design/count/_view/numofundefined',2000)
-    
-    for result in results:
-        print "// " ,result.value, "tweets are undefined."
-    
-    map_fun = '''function(doc) {
-    emit(doc.tweet_id,null); }'''
-
-    results = db.query(map_fun)
-    
-    print "// " , len(results), "tweets in database."
-        
-    print "========================================================"
 
 if __name__ == "__main__":
+
+    print "Starting NBN import.."
+
+    # Database name
+    database = 'nbn_tweets'
+
+    # Input file name
+    inputFile = 'data/Tweets2000.dat'
+
+    # Run import
+    importFromFile()
+
+    print "Starting Flu import.."
+
+    # Database name
+    database = 'flu_tweets'
+
+    # Input file name
+    inputFile = 'data/Flu1500.dat'
+
+    skipDuplicates = False
+
     # Run import
     importFromFile()
     
-    #print stats
-    #currentStats()

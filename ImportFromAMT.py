@@ -9,14 +9,12 @@ database = ''
 
 # get command line arguements
 if len(sys.argv) != 2:
-    print 'python ImportFromAMT.py <database_name>'
+    print 'python ImportFromAMT.py <database_ip>'
     exit()
 else:
-    # Database name
-    database = str(sys.argv[1])
+    databaseIP = str(sys.argv[1])
 
-    # Filename
-    filename = 'results/%s.csv' % (database)
+
 
 def importResults(db):
     database = []
@@ -33,7 +31,11 @@ def importResults(db):
     map_fun = '''function(doc) { if(doc.doc_type == "tweet"){
     emit(doc.tweet_id, doc); }}'''
 
-    reader = csv.reader(open(filename, 'rb'))
+    try:
+        reader = csv.reader(open(filename, 'rb'))
+    except:
+        print 'No file containing results.'
+        return
 
     for row in reader:
         # rest column count
@@ -121,17 +123,49 @@ def importResults(db):
                 # increment column number
                 columnNumber += 1
 
-            print "Assignment", assignmentid, "has only", entries, "entries"
+            print "Assignment", assignmentid, "has", entries, "entries"
             entries = 0
-
 
 
 if __name__ == "__main__":
 
     # database IP    
     couch = couchdb.Server(databaseIP)
-    
-    # set database to query
-    db = couch[database]
 
-    importResults(db)
+    print 'Importing NBN Results...'
+
+    # Database name
+    database = 'nbn_tweets'
+
+    # Filename
+    filename = 'results/nbn.csv'
+
+    try:
+        # set database to query
+        db = couch[database]
+
+        # Import results
+        importResults(db)
+    except:
+        print 'No such database.'
+
+
+    print 'Done!'
+    print 'Importing Flu Results...'
+
+    # Database name
+    database = 'flu_tweets'
+
+    # Filename
+    filename = 'results/flu.csv'
+
+    try:
+        # set database to query
+        db = couch[database]
+
+        # Import results
+        importResults(db)
+    except:
+        print 'No such database.'
+
+    print 'Done!'
