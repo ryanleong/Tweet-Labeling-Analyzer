@@ -1,0 +1,459 @@
+<script type='text/javascript'>
+window.onload = function() {document.getElementById('submitButton').setAttribute('onclick', 'return validateForm()'); }
+
+
+function validateRadio (radios)
+{
+    for (i = 0; i < radios.length; ++ i) {
+        if (radios [i].checked) return true;
+    }
+    return false;
+}
+
+function validateForm() {
+var allComplete = 0;
+
+for (var i = 0; i < 50; i++) {
+var temp = "${docID";
+var temp2 = temp.concat(i);
+var name = temp2.concat("}");
+
+    if(validateRadio (document.getElementsByName("${docID0}"))) {
+        allComplete = allComplete + 1;
+    }
+}
+
+    if(allComplete == 50)
+    {
+        return true;
+    }
+    else
+    {
+        alert('Please answer all questions');
+        return false;
+    }
+}
+</script>
+<p>This questionnaire requires the worker to rate publicly available short text messages. Workers will be paid when the questionnaire is fully complete and has been verified.<br />
+Be advised that the short text messages may contain strong coarse language and may contain material that some people may find offensive.</p>
+
+<p>Please take the time to read this <a href="https://drive.google.com/file/d/0B7HFKq7D6npwcVJxWmsxdDJEVXM/edit?usp=sharing" target="_blank">Plain Language Statement</a> before proceeding with the questionnaire.</p>
+
+<p><strong>Question: To what extent do you agree that the following short text messages are on the topic of the Flu?</strong></p>
+
+<p>&nbsp;</p>
+
+<table border="0" cellpadding="8" width="1000">
+	<tbody>
+		<tr>
+			<td>&nbsp;</td>
+			<td>Strongly Disagree</td>
+			<td>Disagree</td>
+			<td>Neither Disagree nor Agree</td>
+			<td>Agree</td>
+			<td>Strongly Agree</td>
+		</tr>
+		<tr class="spaceUnder">
+			<td><span style="font-family:tahoma,geneva,sans-serif;">${tweet0}</span></td>
+			<td width="10%"><span style="font-family:tahoma,geneva,sans-serif;"><input id="${docID0}" name="${docID0}" type="radio" value="1" /> 1</span></td>
+			<td width="10%"><span style="font-family:tahoma,geneva,sans-serif;"><input id="${docID0}" name="${docID0}" type="radio" value="2" /> 2</span></td>
+			<td width="10%"><span style="font-family:tahoma,geneva,sans-serif;"><input id="${docID0}" name="${docID0}" type="radio" value="3" /> 3</span></td>
+			<td width="10%"><span style="font-family:tahoma,geneva,sans-serif;"><input id="${docID0}" name="${docID0}" type="radio" value="4" /> 4</span></td>
+			<td width="10%"><span style="font-family:tahoma,geneva,sans-serif;"><input id="${docID0}" name="${docID0}" type="radio" value="5" /> 5</span></td>
+		</tr>
+		<tr class="spaceUnder">
+			<td><span style="font-family:tahoma,geneva,sans-serif;">${tweet1}</span></td>
+			<td width="10%"><span style="font-family:tahoma,geneva,sans-serif;"><input id="${docID1}" name="${docID1}" type="radio" value="1" /> 1</span></td>
+			<td width="10%"><span style="font-family:tahoma,geneva,sans-serif;"><input id="${docID1}" name="${docID1}" type="radio" value="2" /> 2</span></td>
+			<td width="10%"><span style="font-family:tahoma,geneva,sans-serif;"><input id="${docID1}" name="${docID1}" type="radio" value="3" /> 3</span></td>
+			<td width="10%"><span style="font-family:tahoma,geneva,sans-serif;"><input id="${docID1}" name="${docID1}" type="radio" value="4" /> 4</span></td>
+			<td width="10%"><span style="font-family:tahoma,geneva,sans-serif;"><input id="${docID1}" name="${docID1}" type="radio" value="5" /> 5</span></td>
+		</tr>
+		<tr class="spaceUnder">
+			<td><span style="font-family:tahoma,geneva,sans-serif;">${tweet2}</span></td>
+			<td width="10%"><span style="font-family:tahoma,geneva,sans-serif;"><input id="${docID2}" name="${docID2}" type="radio" value="1" /> 1</span></td>
+			<td width="10%"><span style="font-family:tahoma,geneva,sans-serif;"><input id="${docID2}" name="${docID2}" type="radio" value="2" /> 2</span></td>
+			<td width="10%"><span style="font-family:tahoma,geneva,sans-serif;"><input id="${docID2}" name="${docID2}" type="radio" value="3" /> 3</span></td>
+			<td width="10%"><span style="font-family:tahoma,geneva,sans-serif;"><input id="${docID2}" name="${docID2}" type="radio" value="4" /> 4</span></td>
+			<td width="10%"><span style="font-family:tahoma,geneva,sans-serif;"><input id="${docID2}" name="${docID2}" type="radio" value="5" /> 5</span></td>
+		</tr>
+		<tr class="spaceUnder">
+			<td><span style="font-family:tahoma,geneva,sans-serif;">${tweet3}</span></td>
+			<td width="10%"><span style="font-family:tahoma,geneva,sans-serif;"><input id="${docID3}" name="${docID3}" type="radio" value="1" /> 1</span></td>
+			<td width="10%"><span style="font-family:tahoma,geneva,sans-serif;"><input id="${docID3}" name="${docID3}" type="radio" value="2" /> 2</span></td>
+			<td width="10%"><span style="font-family:tahoma,geneva,sans-serif;"><input id="${docID3}" name="${docID3}" type="radio" value="3" /> 3</span></td>
+			<td width="10%"><span style="font-family:tahoma,geneva,sans-serif;"><input id="${docID3}" name="${docID3}" type="radio" value="4" /> 4</span></td>
+			<td width="10%"><span style="font-family:tahoma,geneva,sans-serif;"><input id="${docID3}" name="${docID3}" type="radio" value="5" /> 5</span></td>
+		</tr>
+		<tr class="spaceUnder">
+			<td><span style="font-family:tahoma,geneva,sans-serif;">${tweet4}</span></td>
+			<td width="10%"><span style="font-family:tahoma,geneva,sans-serif;"><input id="${docID4}" name="${docID4}" type="radio" value="1" /> 1</span></td>
+			<td width="10%"><span style="font-family:tahoma,geneva,sans-serif;"><input id="${docID4}" name="${docID4}" type="radio" value="2" /> 2</span></td>
+			<td width="10%"><span style="font-family:tahoma,geneva,sans-serif;"><input id="${docID4}" name="${docID4}" type="radio" value="3" /> 3</span></td>
+			<td width="10%"><span style="font-family:tahoma,geneva,sans-serif;"><input id="${docID4}" name="${docID4}" type="radio" value="4" /> 4</span></td>
+			<td width="10%"><span style="font-family:tahoma,geneva,sans-serif;"><input id="${docID4}" name="${docID4}" type="radio" value="5" /> 5</span></td>
+		</tr>
+		<tr class="spaceUnder">
+			<td><span style="font-family:tahoma,geneva,sans-serif;">${tweet5}</span></td>
+			<td width="10%"><span style="font-family:tahoma,geneva,sans-serif;"><input id="${docID5}" name="${docID5}" type="radio" value="1" /> 1</span></td>
+			<td width="10%"><span style="font-family:tahoma,geneva,sans-serif;"><input id="${docID5}" name="${docID5}" type="radio" value="2" /> 2</span></td>
+			<td width="10%"><span style="font-family:tahoma,geneva,sans-serif;"><input id="${docID5}" name="${docID5}" type="radio" value="3" /> 3</span></td>
+			<td width="10%"><span style="font-family:tahoma,geneva,sans-serif;"><input id="${docID5}" name="${docID5}" type="radio" value="4" /> 4</span></td>
+			<td width="10%"><span style="font-family:tahoma,geneva,sans-serif;"><input id="${docID5}" name="${docID5}" type="radio" value="5" /> 5</span></td>
+		</tr>
+		<tr class="spaceUnder">
+			<td><span style="font-family:tahoma,geneva,sans-serif;">${tweet6}</span></td>
+			<td width="10%"><span style="font-family:tahoma,geneva,sans-serif;"><input id="${docID6}" name="${docID6}" type="radio" value="1" /> 1</span></td>
+			<td width="10%"><span style="font-family:tahoma,geneva,sans-serif;"><input id="${docID6}" name="${docID6}" type="radio" value="2" /> 2</span></td>
+			<td width="10%"><span style="font-family:tahoma,geneva,sans-serif;"><input id="${docID6}" name="${docID6}" type="radio" value="3" /> 3</span></td>
+			<td width="10%"><span style="font-family:tahoma,geneva,sans-serif;"><input id="${docID6}" name="${docID6}" type="radio" value="4" /> 4</span></td>
+			<td width="10%"><span style="font-family:tahoma,geneva,sans-serif;"><input id="${docID6}" name="${docID6}" type="radio" value="5" /> 5</span></td>
+		</tr>
+		<tr class="spaceUnder">
+			<td><span style="font-family:tahoma,geneva,sans-serif;">${tweet7}</span></td>
+			<td width="10%"><span style="font-family:tahoma,geneva,sans-serif;"><input id="${docID7}" name="${docID7}" type="radio" value="1" /> 1</span></td>
+			<td width="10%"><span style="font-family:tahoma,geneva,sans-serif;"><input id="${docID7}" name="${docID7}" type="radio" value="2" /> 2</span></td>
+			<td width="10%"><span style="font-family:tahoma,geneva,sans-serif;"><input id="${docID7}" name="${docID7}" type="radio" value="3" /> 3</span></td>
+			<td width="10%"><span style="font-family:tahoma,geneva,sans-serif;"><input id="${docID7}" name="${docID7}" type="radio" value="4" /> 4</span></td>
+			<td width="10%"><span style="font-family:tahoma,geneva,sans-serif;"><input id="${docID7}" name="${docID7}" type="radio" value="5" /> 5</span></td>
+		</tr>
+		<tr class="spaceUnder">
+			<td><span style="font-family:tahoma,geneva,sans-serif;">${tweet8}</span></td>
+			<td width="10%"><span style="font-family:tahoma,geneva,sans-serif;"><input id="${docID8}" name="${docID8}" type="radio" value="1" /> 1</span></td>
+			<td width="10%"><span style="font-family:tahoma,geneva,sans-serif;"><input id="${docID8}" name="${docID8}" type="radio" value="2" /> 2</span></td>
+			<td width="10%"><span style="font-family:tahoma,geneva,sans-serif;"><input id="${docID8}" name="${docID8}" type="radio" value="3" /> 3</span></td>
+			<td width="10%"><span style="font-family:tahoma,geneva,sans-serif;"><input id="${docID8}" name="${docID8}" type="radio" value="4" /> 4</span></td>
+			<td width="10%"><span style="font-family:tahoma,geneva,sans-serif;"><input id="${docID8}" name="${docID8}" type="radio" value="5" /> 5</span></td>
+		</tr>
+		<tr class="spaceUnder">
+			<td><span style="font-family:tahoma,geneva,sans-serif;">${tweet9}</span></td>
+			<td width="10%"><span style="font-family:tahoma,geneva,sans-serif;"><input id="${docID9}" name="${docID9}" type="radio" value="1" /> 1</span></td>
+			<td width="10%"><span style="font-family:tahoma,geneva,sans-serif;"><input id="${docID9}" name="${docID9}" type="radio" value="2" /> 2</span></td>
+			<td width="10%"><span style="font-family:tahoma,geneva,sans-serif;"><input id="${docID9}" name="${docID9}" type="radio" value="3" /> 3</span></td>
+			<td width="10%"><span style="font-family:tahoma,geneva,sans-serif;"><input id="${docID9}" name="${docID9}" type="radio" value="4" /> 4</span></td>
+			<td width="10%"><span style="font-family:tahoma,geneva,sans-serif;"><input id="${docID9}" name="${docID9}" type="radio" value="5" /> 5</span></td>
+		</tr>
+		<tr class="spaceUnder">
+			<td><span style="font-family:tahoma,geneva,sans-serif;">${tweet10}</span></td>
+			<td width="10%"><span style="font-family:tahoma,geneva,sans-serif;"><input id="${docID10}" name="${docID10}" type="radio" value="1" /> 1</span></td>
+			<td width="10%"><span style="font-family:tahoma,geneva,sans-serif;"><input id="${docID10}" name="${docID10}" type="radio" value="2" /> 2</span></td>
+			<td width="10%"><span style="font-family:tahoma,geneva,sans-serif;"><input id="${docID10}" name="${docID10}" type="radio" value="3" /> 3</span></td>
+			<td width="10%"><span style="font-family:tahoma,geneva,sans-serif;"><input id="${docID10}" name="${docID10}" type="radio" value="4" /> 4</span></td>
+			<td width="10%"><span style="font-family:tahoma,geneva,sans-serif;"><input id="${docID10}" name="${docID10}" type="radio" value="5" /> 5</span></td>
+		</tr>
+		<tr class="spaceUnder">
+			<td><span style="font-family:tahoma,geneva,sans-serif;">${tweet11}</span></td>
+			<td width="10%"><span style="font-family:tahoma,geneva,sans-serif;"><input id="${docID11}" name="${docID11}" type="radio" value="1" /> 1</span></td>
+			<td width="10%"><span style="font-family:tahoma,geneva,sans-serif;"><input id="${docID11}" name="${docID11}" type="radio" value="2" /> 2</span></td>
+			<td width="10%"><span style="font-family:tahoma,geneva,sans-serif;"><input id="${docID11}" name="${docID11}" type="radio" value="3" /> 3</span></td>
+			<td width="10%"><span style="font-family:tahoma,geneva,sans-serif;"><input id="${docID11}" name="${docID11}" type="radio" value="4" /> 4</span></td>
+			<td width="10%"><span style="font-family:tahoma,geneva,sans-serif;"><input id="${docID11}" name="${docID11}" type="radio" value="5" /> 5</span></td>
+		</tr>
+		<tr class="spaceUnder">
+			<td><span style="font-family:tahoma,geneva,sans-serif;">${tweet12}</span></td>
+			<td width="10%"><span style="font-family:tahoma,geneva,sans-serif;"><input id="${docID12}" name="${docID12}" type="radio" value="1" /> 1</span></td>
+			<td width="10%"><span style="font-family:tahoma,geneva,sans-serif;"><input id="${docID12}" name="${docID12}" type="radio" value="2" /> 2</span></td>
+			<td width="10%"><span style="font-family:tahoma,geneva,sans-serif;"><input id="${docID12}" name="${docID12}" type="radio" value="3" /> 3</span></td>
+			<td width="10%"><span style="font-family:tahoma,geneva,sans-serif;"><input id="${docID12}" name="${docID12}" type="radio" value="4" /> 4</span></td>
+			<td width="10%"><span style="font-family:tahoma,geneva,sans-serif;"><input id="${docID12}" name="${docID12}" type="radio" value="5" /> 5</span></td>
+		</tr>
+		<tr class="spaceUnder">
+			<td><span style="font-family:tahoma,geneva,sans-serif;">${tweet13}</span></td>
+			<td width="10%"><span style="font-family:tahoma,geneva,sans-serif;"><input id="${docID13}" name="${docID13}" type="radio" value="1" /> 1</span></td>
+			<td width="10%"><span style="font-family:tahoma,geneva,sans-serif;"><input id="${docID13}" name="${docID13}" type="radio" value="2" /> 2</span></td>
+			<td width="10%"><span style="font-family:tahoma,geneva,sans-serif;"><input id="${docID13}" name="${docID13}" type="radio" value="3" /> 3</span></td>
+			<td width="10%"><span style="font-family:tahoma,geneva,sans-serif;"><input id="${docID13}" name="${docID13}" type="radio" value="4" /> 4</span></td>
+			<td width="10%"><span style="font-family:tahoma,geneva,sans-serif;"><input id="${docID13}" name="${docID13}" type="radio" value="5" /> 5</span></td>
+		</tr>
+		<tr class="spaceUnder">
+			<td><span style="font-family:tahoma,geneva,sans-serif;">${tweet14}</span></td>
+			<td width="10%"><span style="font-family:tahoma,geneva,sans-serif;"><input id="${docID14}" name="${docID14}" type="radio" value="1" /> 1</span></td>
+			<td width="10%"><span style="font-family:tahoma,geneva,sans-serif;"><input id="${docID14}" name="${docID14}" type="radio" value="2" /> 2</span></td>
+			<td width="10%"><span style="font-family:tahoma,geneva,sans-serif;"><input id="${docID14}" name="${docID14}" type="radio" value="3" /> 3</span></td>
+			<td width="10%"><span style="font-family:tahoma,geneva,sans-serif;"><input id="${docID14}" name="${docID14}" type="radio" value="4" /> 4</span></td>
+			<td width="10%"><span style="font-family:tahoma,geneva,sans-serif;"><input id="${docID14}" name="${docID14}" type="radio" value="5" /> 5</span></td>
+		</tr>
+		<tr class="spaceUnder">
+			<td><span style="font-family:tahoma,geneva,sans-serif;">${tweet15}</span></td>
+			<td width="10%"><span style="font-family:tahoma,geneva,sans-serif;"><input id="${docID15}" name="${docID15}" type="radio" value="1" /> 1</span></td>
+			<td width="10%"><span style="font-family:tahoma,geneva,sans-serif;"><input id="${docID15}" name="${docID15}" type="radio" value="2" /> 2</span></td>
+			<td width="10%"><span style="font-family:tahoma,geneva,sans-serif;"><input id="${docID15}" name="${docID15}" type="radio" value="3" /> 3</span></td>
+			<td width="10%"><span style="font-family:tahoma,geneva,sans-serif;"><input id="${docID15}" name="${docID15}" type="radio" value="4" /> 4</span></td>
+			<td width="10%"><span style="font-family:tahoma,geneva,sans-serif;"><input id="${docID15}" name="${docID15}" type="radio" value="5" /> 5</span></td>
+		</tr>
+		<tr class="spaceUnder">
+			<td><span style="font-family:tahoma,geneva,sans-serif;">${tweet16}</span></td>
+			<td width="10%"><span style="font-family:tahoma,geneva,sans-serif;"><input id="${docID16}" name="${docID16}" type="radio" value="1" /> 1</span></td>
+			<td width="10%"><span style="font-family:tahoma,geneva,sans-serif;"><input id="${docID16}" name="${docID16}" type="radio" value="2" /> 2</span></td>
+			<td width="10%"><span style="font-family:tahoma,geneva,sans-serif;"><input id="${docID16}" name="${docID16}" type="radio" value="3" /> 3</span></td>
+			<td width="10%"><span style="font-family:tahoma,geneva,sans-serif;"><input id="${docID16}" name="${docID16}" type="radio" value="4" /> 4</span></td>
+			<td width="10%"><span style="font-family:tahoma,geneva,sans-serif;"><input id="${docID16}" name="${docID16}" type="radio" value="5" /> 5</span></td>
+		</tr>
+		<tr class="spaceUnder">
+			<td><span style="font-family:tahoma,geneva,sans-serif;">${tweet17}</span></td>
+			<td width="10%"><span style="font-family:tahoma,geneva,sans-serif;"><input id="${docID17}" name="${docID17}" type="radio" value="1" /> 1</span></td>
+			<td width="10%"><span style="font-family:tahoma,geneva,sans-serif;"><input id="${docID17}" name="${docID17}" type="radio" value="2" /> 2</span></td>
+			<td width="10%"><span style="font-family:tahoma,geneva,sans-serif;"><input id="${docID17}" name="${docID17}" type="radio" value="3" /> 3</span></td>
+			<td width="10%"><span style="font-family:tahoma,geneva,sans-serif;"><input id="${docID17}" name="${docID17}" type="radio" value="4" /> 4</span></td>
+			<td width="10%"><span style="font-family:tahoma,geneva,sans-serif;"><input id="${docID17}" name="${docID17}" type="radio" value="5" /> 5</span></td>
+		</tr>
+		<tr class="spaceUnder">
+			<td><span style="font-family:tahoma,geneva,sans-serif;">${tweet18}</span></td>
+			<td width="10%"><span style="font-family:tahoma,geneva,sans-serif;"><input id="${docID18}" name="${docID18}" type="radio" value="1" /> 1</span></td>
+			<td width="10%"><span style="font-family:tahoma,geneva,sans-serif;"><input id="${docID18}" name="${docID18}" type="radio" value="2" /> 2</span></td>
+			<td width="10%"><span style="font-family:tahoma,geneva,sans-serif;"><input id="${docID18}" name="${docID18}" type="radio" value="3" /> 3</span></td>
+			<td width="10%"><span style="font-family:tahoma,geneva,sans-serif;"><input id="${docID18}" name="${docID18}" type="radio" value="4" /> 4</span></td>
+			<td width="10%"><span style="font-family:tahoma,geneva,sans-serif;"><input id="${docID18}" name="${docID18}" type="radio" value="5" /> 5</span></td>
+		</tr>
+		<tr class="spaceUnder">
+			<td><span style="font-family:tahoma,geneva,sans-serif;">${tweet19}</span></td>
+			<td width="10%"><span style="font-family:tahoma,geneva,sans-serif;"><input id="${docID19}" name="${docID19}" type="radio" value="1" /> 1</span></td>
+			<td width="10%"><span style="font-family:tahoma,geneva,sans-serif;"><input id="${docID19}" name="${docID19}" type="radio" value="2" /> 2</span></td>
+			<td width="10%"><span style="font-family:tahoma,geneva,sans-serif;"><input id="${docID19}" name="${docID19}" type="radio" value="3" /> 3</span></td>
+			<td width="10%"><span style="font-family:tahoma,geneva,sans-serif;"><input id="${docID19}" name="${docID19}" type="radio" value="4" /> 4</span></td>
+			<td width="10%"><span style="font-family:tahoma,geneva,sans-serif;"><input id="${docID19}" name="${docID19}" type="radio" value="5" /> 5</span></td>
+		</tr>
+		<tr class="spaceUnder">
+			<td><span style="font-family:tahoma,geneva,sans-serif;">${tweet20}</span></td>
+			<td width="10%"><span style="font-family:tahoma,geneva,sans-serif;"><input id="${docID20}" name="${docID20}" type="radio" value="1" /> 1</span></td>
+			<td width="10%"><span style="font-family:tahoma,geneva,sans-serif;"><input id="${docID20}" name="${docID20}" type="radio" value="2" /> 2</span></td>
+			<td width="10%"><span style="font-family:tahoma,geneva,sans-serif;"><input id="${docID20}" name="${docID20}" type="radio" value="3" /> 3</span></td>
+			<td width="10%"><span style="font-family:tahoma,geneva,sans-serif;"><input id="${docID20}" name="${docID20}" type="radio" value="4" /> 4</span></td>
+			<td width="10%"><span style="font-family:tahoma,geneva,sans-serif;"><input id="${docID20}" name="${docID20}" type="radio" value="5" /> 5</span></td>
+		</tr>
+		<tr class="spaceUnder">
+			<td><span style="font-family:tahoma,geneva,sans-serif;">${tweet21}</span></td>
+			<td width="10%"><span style="font-family:tahoma,geneva,sans-serif;"><input id="${docID21}" name="${docID21}" type="radio" value="1" /> 1</span></td>
+			<td width="10%"><span style="font-family:tahoma,geneva,sans-serif;"><input id="${docID21}" name="${docID21}" type="radio" value="2" /> 2</span></td>
+			<td width="10%"><span style="font-family:tahoma,geneva,sans-serif;"><input id="${docID21}" name="${docID21}" type="radio" value="3" /> 3</span></td>
+			<td width="10%"><span style="font-family:tahoma,geneva,sans-serif;"><input id="${docID21}" name="${docID21}" type="radio" value="4" /> 4</span></td>
+			<td width="10%"><span style="font-family:tahoma,geneva,sans-serif;"><input id="${docID21}" name="${docID21}" type="radio" value="5" /> 5</span></td>
+		</tr>
+		<tr class="spaceUnder">
+			<td><span style="font-family:tahoma,geneva,sans-serif;">${tweet22}</span></td>
+			<td width="10%"><span style="font-family:tahoma,geneva,sans-serif;"><input id="${docID22}" name="${docID22}" type="radio" value="1" /> 1</span></td>
+			<td width="10%"><span style="font-family:tahoma,geneva,sans-serif;"><input id="${docID22}" name="${docID22}" type="radio" value="2" /> 2</span></td>
+			<td width="10%"><span style="font-family:tahoma,geneva,sans-serif;"><input id="${docID22}" name="${docID22}" type="radio" value="3" /> 3</span></td>
+			<td width="10%"><span style="font-family:tahoma,geneva,sans-serif;"><input id="${docID22}" name="${docID22}" type="radio" value="4" /> 4</span></td>
+			<td width="10%"><span style="font-family:tahoma,geneva,sans-serif;"><input id="${docID22}" name="${docID22}" type="radio" value="5" /> 5</span></td>
+		</tr>
+		<tr class="spaceUnder">
+			<td><span style="font-family:tahoma,geneva,sans-serif;">${tweet23}</span></td>
+			<td width="10%"><span style="font-family:tahoma,geneva,sans-serif;"><input id="${docID23}" name="${docID23}" type="radio" value="1" /> 1</span></td>
+			<td width="10%"><span style="font-family:tahoma,geneva,sans-serif;"><input id="${docID23}" name="${docID23}" type="radio" value="2" /> 2</span></td>
+			<td width="10%"><span style="font-family:tahoma,geneva,sans-serif;"><input id="${docID23}" name="${docID23}" type="radio" value="3" /> 3</span></td>
+			<td width="10%"><span style="font-family:tahoma,geneva,sans-serif;"><input id="${docID23}" name="${docID23}" type="radio" value="4" /> 4</span></td>
+			<td width="10%"><span style="font-family:tahoma,geneva,sans-serif;"><input id="${docID23}" name="${docID23}" type="radio" value="5" /> 5</span></td>
+		</tr>
+		<tr class="spaceUnder">
+			<td><span style="font-family:tahoma,geneva,sans-serif;">${tweet24}</span></td>
+			<td width="10%"><span style="font-family:tahoma,geneva,sans-serif;"><input id="${docID24}" name="${docID24}" type="radio" value="1" /> 1</span></td>
+			<td width="10%"><span style="font-family:tahoma,geneva,sans-serif;"><input id="${docID24}" name="${docID24}" type="radio" value="2" /> 2</span></td>
+			<td width="10%"><span style="font-family:tahoma,geneva,sans-serif;"><input id="${docID24}" name="${docID24}" type="radio" value="3" /> 3</span></td>
+			<td width="10%"><span style="font-family:tahoma,geneva,sans-serif;"><input id="${docID24}" name="${docID24}" type="radio" value="4" /> 4</span></td>
+			<td width="10%"><span style="font-family:tahoma,geneva,sans-serif;"><input id="${docID24}" name="${docID24}" type="radio" value="5" /> 5</span></td>
+		</tr>
+		<tr class="spaceUnder">
+			<td><span style="font-family:tahoma,geneva,sans-serif;">${tweet25}</span></td>
+			<td width="10%"><span style="font-family:tahoma,geneva,sans-serif;"><input id="${docID25}" name="${docID25}" type="radio" value="1" /> 1</span></td>
+			<td width="10%"><span style="font-family:tahoma,geneva,sans-serif;"><input id="${docID25}" name="${docID25}" type="radio" value="2" /> 2</span></td>
+			<td width="10%"><span style="font-family:tahoma,geneva,sans-serif;"><input id="${docID25}" name="${docID25}" type="radio" value="3" /> 3</span></td>
+			<td width="10%"><span style="font-family:tahoma,geneva,sans-serif;"><input id="${docID25}" name="${docID25}" type="radio" value="4" /> 4</span></td>
+			<td width="10%"><span style="font-family:tahoma,geneva,sans-serif;"><input id="${docID25}" name="${docID25}" type="radio" value="5" /> 5</span></td>
+		</tr>
+		<tr class="spaceUnder">
+			<td><span style="font-family:tahoma,geneva,sans-serif;">${tweet26}</span></td>
+			<td width="10%"><span style="font-family:tahoma,geneva,sans-serif;"><input id="${docID26}" name="${docID26}" type="radio" value="1" /> 1</span></td>
+			<td width="10%"><span style="font-family:tahoma,geneva,sans-serif;"><input id="${docID26}" name="${docID26}" type="radio" value="2" /> 2</span></td>
+			<td width="10%"><span style="font-family:tahoma,geneva,sans-serif;"><input id="${docID26}" name="${docID26}" type="radio" value="3" /> 3</span></td>
+			<td width="10%"><span style="font-family:tahoma,geneva,sans-serif;"><input id="${docID26}" name="${docID26}" type="radio" value="4" /> 4</span></td>
+			<td width="10%"><span style="font-family:tahoma,geneva,sans-serif;"><input id="${docID26}" name="${docID26}" type="radio" value="5" /> 5</span></td>
+		</tr>
+		<tr class="spaceUnder">
+			<td><span style="font-family:tahoma,geneva,sans-serif;">${tweet27}</span></td>
+			<td width="10%"><span style="font-family:tahoma,geneva,sans-serif;"><input id="${docID27}" name="${docID27}" type="radio" value="1" /> 1</span></td>
+			<td width="10%"><span style="font-family:tahoma,geneva,sans-serif;"><input id="${docID27}" name="${docID27}" type="radio" value="2" /> 2</span></td>
+			<td width="10%"><span style="font-family:tahoma,geneva,sans-serif;"><input id="${docID27}" name="${docID27}" type="radio" value="3" /> 3</span></td>
+			<td width="10%"><span style="font-family:tahoma,geneva,sans-serif;"><input id="${docID27}" name="${docID27}" type="radio" value="4" /> 4</span></td>
+			<td width="10%"><span style="font-family:tahoma,geneva,sans-serif;"><input id="${docID27}" name="${docID27}" type="radio" value="5" /> 5</span></td>
+		</tr>
+		<tr class="spaceUnder">
+			<td><span style="font-family:tahoma,geneva,sans-serif;">${tweet28}</span></td>
+			<td width="10%"><span style="font-family:tahoma,geneva,sans-serif;"><input id="${docID28}" name="${docID28}" type="radio" value="1" /> 1</span></td>
+			<td width="10%"><span style="font-family:tahoma,geneva,sans-serif;"><input id="${docID28}" name="${docID28}" type="radio" value="2" /> 2</span></td>
+			<td width="10%"><span style="font-family:tahoma,geneva,sans-serif;"><input id="${docID28}" name="${docID28}" type="radio" value="3" /> 3</span></td>
+			<td width="10%"><span style="font-family:tahoma,geneva,sans-serif;"><input id="${docID28}" name="${docID28}" type="radio" value="4" /> 4</span></td>
+			<td width="10%"><span style="font-family:tahoma,geneva,sans-serif;"><input id="${docID28}" name="${docID28}" type="radio" value="5" /> 5</span></td>
+		</tr>
+		<tr class="spaceUnder">
+			<td><span style="font-family:tahoma,geneva,sans-serif;">${tweet29}</span></td>
+			<td width="10%"><span style="font-family:tahoma,geneva,sans-serif;"><input id="${docID29}" name="${docID29}" type="radio" value="1" /> 1</span></td>
+			<td width="10%"><span style="font-family:tahoma,geneva,sans-serif;"><input id="${docID29}" name="${docID29}" type="radio" value="2" /> 2</span></td>
+			<td width="10%"><span style="font-family:tahoma,geneva,sans-serif;"><input id="${docID29}" name="${docID29}" type="radio" value="3" /> 3</span></td>
+			<td width="10%"><span style="font-family:tahoma,geneva,sans-serif;"><input id="${docID29}" name="${docID29}" type="radio" value="4" /> 4</span></td>
+			<td width="10%"><span style="font-family:tahoma,geneva,sans-serif;"><input id="${docID29}" name="${docID29}" type="radio" value="5" /> 5</span></td>
+		</tr>
+		<tr class="spaceUnder">
+			<td><span style="font-family:tahoma,geneva,sans-serif;">${tweet30}</span></td>
+			<td width="10%"><span style="font-family:tahoma,geneva,sans-serif;"><input id="${docID30}" name="${docID30}" type="radio" value="1" /> 1</span></td>
+			<td width="10%"><span style="font-family:tahoma,geneva,sans-serif;"><input id="${docID30}" name="${docID30}" type="radio" value="2" /> 2</span></td>
+			<td width="10%"><span style="font-family:tahoma,geneva,sans-serif;"><input id="${docID30}" name="${docID30}" type="radio" value="3" /> 3</span></td>
+			<td width="10%"><span style="font-family:tahoma,geneva,sans-serif;"><input id="${docID30}" name="${docID30}" type="radio" value="4" /> 4</span></td>
+			<td width="10%"><span style="font-family:tahoma,geneva,sans-serif;"><input id="${docID30}" name="${docID30}" type="radio" value="5" /> 5</span></td>
+		</tr>
+		<tr class="spaceUnder">
+			<td><span style="font-family:tahoma,geneva,sans-serif;">${tweet31}</span></td>
+			<td width="10%"><span style="font-family:tahoma,geneva,sans-serif;"><input id="${docID31}" name="${docID31}" type="radio" value="1" /> 1</span></td>
+			<td width="10%"><span style="font-family:tahoma,geneva,sans-serif;"><input id="${docID31}" name="${docID31}" type="radio" value="2" /> 2</span></td>
+			<td width="10%"><span style="font-family:tahoma,geneva,sans-serif;"><input id="${docID31}" name="${docID31}" type="radio" value="3" /> 3</span></td>
+			<td width="10%"><span style="font-family:tahoma,geneva,sans-serif;"><input id="${docID31}" name="${docID31}" type="radio" value="4" /> 4</span></td>
+			<td width="10%"><span style="font-family:tahoma,geneva,sans-serif;"><input id="${docID31}" name="${docID31}" type="radio" value="5" /> 5</span></td>
+		</tr>
+		<tr class="spaceUnder">
+			<td><span style="font-family:tahoma,geneva,sans-serif;">${tweet32}</span></td>
+			<td width="10%"><span style="font-family:tahoma,geneva,sans-serif;"><input id="${docID32}" name="${docID32}" type="radio" value="1" /> 1</span></td>
+			<td width="10%"><span style="font-family:tahoma,geneva,sans-serif;"><input id="${docID32}" name="${docID32}" type="radio" value="2" /> 2</span></td>
+			<td width="10%"><span style="font-family:tahoma,geneva,sans-serif;"><input id="${docID32}" name="${docID32}" type="radio" value="3" /> 3</span></td>
+			<td width="10%"><span style="font-family:tahoma,geneva,sans-serif;"><input id="${docID32}" name="${docID32}" type="radio" value="4" /> 4</span></td>
+			<td width="10%"><span style="font-family:tahoma,geneva,sans-serif;"><input id="${docID32}" name="${docID32}" type="radio" value="5" /> 5</span></td>
+		</tr>
+		<tr class="spaceUnder">
+			<td><span style="font-family:tahoma,geneva,sans-serif;">${tweet33}</span></td>
+			<td width="10%"><span style="font-family:tahoma,geneva,sans-serif;"><input id="${docID33}" name="${docID33}" type="radio" value="1" /> 1</span></td>
+			<td width="10%"><span style="font-family:tahoma,geneva,sans-serif;"><input id="${docID33}" name="${docID33}" type="radio" value="2" /> 2</span></td>
+			<td width="10%"><span style="font-family:tahoma,geneva,sans-serif;"><input id="${docID33}" name="${docID33}" type="radio" value="3" /> 3</span></td>
+			<td width="10%"><span style="font-family:tahoma,geneva,sans-serif;"><input id="${docID33}" name="${docID33}" type="radio" value="4" /> 4</span></td>
+			<td width="10%"><span style="font-family:tahoma,geneva,sans-serif;"><input id="${docID33}" name="${docID33}" type="radio" value="5" /> 5</span></td>
+		</tr>
+		<tr class="spaceUnder">
+			<td><span style="font-family:tahoma,geneva,sans-serif;">${tweet34}</span></td>
+			<td width="10%"><span style="font-family:tahoma,geneva,sans-serif;"><input id="${docID34}" name="${docID34}" type="radio" value="1" /> 1</span></td>
+			<td width="10%"><span style="font-family:tahoma,geneva,sans-serif;"><input id="${docID34}" name="${docID34}" type="radio" value="2" /> 2</span></td>
+			<td width="10%"><span style="font-family:tahoma,geneva,sans-serif;"><input id="${docID34}" name="${docID34}" type="radio" value="3" /> 3</span></td>
+			<td width="10%"><span style="font-family:tahoma,geneva,sans-serif;"><input id="${docID34}" name="${docID34}" type="radio" value="4" /> 4</span></td>
+			<td width="10%"><span style="font-family:tahoma,geneva,sans-serif;"><input id="${docID34}" name="${docID34}" type="radio" value="5" /> 5</span></td>
+		</tr>
+		<tr class="spaceUnder">
+			<td><span style="font-family:tahoma,geneva,sans-serif;">${tweet35}</span></td>
+			<td width="10%"><span style="font-family:tahoma,geneva,sans-serif;"><input id="${docID35}" name="${docID35}" type="radio" value="1" /> 1</span></td>
+			<td width="10%"><span style="font-family:tahoma,geneva,sans-serif;"><input id="${docID35}" name="${docID35}" type="radio" value="2" /> 2</span></td>
+			<td width="10%"><span style="font-family:tahoma,geneva,sans-serif;"><input id="${docID35}" name="${docID35}" type="radio" value="3" /> 3</span></td>
+			<td width="10%"><span style="font-family:tahoma,geneva,sans-serif;"><input id="${docID35}" name="${docID35}" type="radio" value="4" /> 4</span></td>
+			<td width="10%"><span style="font-family:tahoma,geneva,sans-serif;"><input id="${docID35}" name="${docID35}" type="radio" value="5" /> 5</span></td>
+		</tr>
+		<tr class="spaceUnder">
+			<td><span style="font-family:tahoma,geneva,sans-serif;">${tweet36}</span></td>
+			<td width="10%"><span style="font-family:tahoma,geneva,sans-serif;"><input id="${docID36}" name="${docID36}" type="radio" value="1" /> 1</span></td>
+			<td width="10%"><span style="font-family:tahoma,geneva,sans-serif;"><input id="${docID36}" name="${docID36}" type="radio" value="2" /> 2</span></td>
+			<td width="10%"><span style="font-family:tahoma,geneva,sans-serif;"><input id="${docID36}" name="${docID36}" type="radio" value="3" /> 3</span></td>
+			<td width="10%"><span style="font-family:tahoma,geneva,sans-serif;"><input id="${docID36}" name="${docID36}" type="radio" value="4" /> 4</span></td>
+			<td width="10%"><span style="font-family:tahoma,geneva,sans-serif;"><input id="${docID36}" name="${docID36}" type="radio" value="5" /> 5</span></td>
+		</tr>
+		<tr class="spaceUnder">
+			<td><span style="font-family:tahoma,geneva,sans-serif;">${tweet37}</span></td>
+			<td width="10%"><span style="font-family:tahoma,geneva,sans-serif;"><input id="${docID37}" name="${docID37}" type="radio" value="1" /> 1</span></td>
+			<td width="10%"><span style="font-family:tahoma,geneva,sans-serif;"><input id="${docID37}" name="${docID37}" type="radio" value="2" /> 2</span></td>
+			<td width="10%"><span style="font-family:tahoma,geneva,sans-serif;"><input id="${docID37}" name="${docID37}" type="radio" value="3" /> 3</span></td>
+			<td width="10%"><span style="font-family:tahoma,geneva,sans-serif;"><input id="${docID37}" name="${docID37}" type="radio" value="4" /> 4</span></td>
+			<td width="10%"><span style="font-family:tahoma,geneva,sans-serif;"><input id="${docID37}" name="${docID37}" type="radio" value="5" /> 5</span></td>
+		</tr>
+		<tr class="spaceUnder">
+			<td><span style="font-family:tahoma,geneva,sans-serif;">${tweet38}</span></td>
+			<td width="10%"><span style="font-family:tahoma,geneva,sans-serif;"><input id="${docID38}" name="${docID38}" type="radio" value="1" /> 1</span></td>
+			<td width="10%"><span style="font-family:tahoma,geneva,sans-serif;"><input id="${docID38}" name="${docID38}" type="radio" value="2" /> 2</span></td>
+			<td width="10%"><span style="font-family:tahoma,geneva,sans-serif;"><input id="${docID38}" name="${docID38}" type="radio" value="3" /> 3</span></td>
+			<td width="10%"><span style="font-family:tahoma,geneva,sans-serif;"><input id="${docID38}" name="${docID38}" type="radio" value="4" /> 4</span></td>
+			<td width="10%"><span style="font-family:tahoma,geneva,sans-serif;"><input id="${docID38}" name="${docID38}" type="radio" value="5" /> 5</span></td>
+		</tr>
+		<tr class="spaceUnder">
+			<td><span style="font-family:tahoma,geneva,sans-serif;">${tweet39}</span></td>
+			<td width="10%"><span style="font-family:tahoma,geneva,sans-serif;"><input id="${docID39}" name="${docID39}" type="radio" value="1" /> 1</span></td>
+			<td width="10%"><span style="font-family:tahoma,geneva,sans-serif;"><input id="${docID39}" name="${docID39}" type="radio" value="2" /> 2</span></td>
+			<td width="10%"><span style="font-family:tahoma,geneva,sans-serif;"><input id="${docID39}" name="${docID39}" type="radio" value="3" /> 3</span></td>
+			<td width="10%"><span style="font-family:tahoma,geneva,sans-serif;"><input id="${docID39}" name="${docID39}" type="radio" value="4" /> 4</span></td>
+			<td width="10%"><span style="font-family:tahoma,geneva,sans-serif;"><input id="${docID39}" name="${docID39}" type="radio" value="5" /> 5</span></td>
+		</tr>
+		<tr class="spaceUnder">
+			<td><span style="font-family:tahoma,geneva,sans-serif;">${tweet40}</span></td>
+			<td width="10%"><span style="font-family:tahoma,geneva,sans-serif;"><input id="${docID40}" name="${docID40}" type="radio" value="1" /> 1</span></td>
+			<td width="10%"><span style="font-family:tahoma,geneva,sans-serif;"><input id="${docID40}" name="${docID40}" type="radio" value="2" /> 2</span></td>
+			<td width="10%"><span style="font-family:tahoma,geneva,sans-serif;"><input id="${docID40}" name="${docID40}" type="radio" value="3" /> 3</span></td>
+			<td width="10%"><span style="font-family:tahoma,geneva,sans-serif;"><input id="${docID40}" name="${docID40}" type="radio" value="4" /> 4</span></td>
+			<td width="10%"><span style="font-family:tahoma,geneva,sans-serif;"><input id="${docID40}" name="${docID40}" type="radio" value="5" /> 5</span></td>
+		</tr>
+		<tr class="spaceUnder">
+			<td><span style="font-family:tahoma,geneva,sans-serif;">${tweet41}</span></td>
+			<td width="10%"><span style="font-family:tahoma,geneva,sans-serif;"><input id="${docID41}" name="${docID41}" type="radio" value="1" /> 1</span></td>
+			<td width="10%"><span style="font-family:tahoma,geneva,sans-serif;"><input id="${docID41}" name="${docID41}" type="radio" value="2" /> 2</span></td>
+			<td width="10%"><span style="font-family:tahoma,geneva,sans-serif;"><input id="${docID41}" name="${docID41}" type="radio" value="3" /> 3</span></td>
+			<td width="10%"><span style="font-family:tahoma,geneva,sans-serif;"><input id="${docID41}" name="${docID41}" type="radio" value="4" /> 4</span></td>
+			<td width="10%"><span style="font-family:tahoma,geneva,sans-serif;"><input id="${docID41}" name="${docID41}" type="radio" value="5" /> 5</span></td>
+		</tr>
+		<tr class="spaceUnder">
+			<td><span style="font-family:tahoma,geneva,sans-serif;">${tweet42}</span></td>
+			<td width="10%"><span style="font-family:tahoma,geneva,sans-serif;"><input id="${docID42}" name="${docID42}" type="radio" value="1" /> 1</span></td>
+			<td width="10%"><span style="font-family:tahoma,geneva,sans-serif;"><input id="${docID42}" name="${docID42}" type="radio" value="2" /> 2</span></td>
+			<td width="10%"><span style="font-family:tahoma,geneva,sans-serif;"><input id="${docID42}" name="${docID42}" type="radio" value="3" /> 3</span></td>
+			<td width="10%"><span style="font-family:tahoma,geneva,sans-serif;"><input id="${docID42}" name="${docID42}" type="radio" value="4" /> 4</span></td>
+			<td width="10%"><span style="font-family:tahoma,geneva,sans-serif;"><input id="${docID42}" name="${docID42}" type="radio" value="5" /> 5</span></td>
+		</tr>
+		<tr class="spaceUnder">
+			<td><span style="font-family:tahoma,geneva,sans-serif;">${tweet43}</span></td>
+			<td width="10%"><span style="font-family:tahoma,geneva,sans-serif;"><input id="${docID43}" name="${docID43}" type="radio" value="1" /> 1</span></td>
+			<td width="10%"><span style="font-family:tahoma,geneva,sans-serif;"><input id="${docID43}" name="${docID43}" type="radio" value="2" /> 2</span></td>
+			<td width="10%"><span style="font-family:tahoma,geneva,sans-serif;"><input id="${docID43}" name="${docID43}" type="radio" value="3" /> 3</span></td>
+			<td width="10%"><span style="font-family:tahoma,geneva,sans-serif;"><input id="${docID43}" name="${docID43}" type="radio" value="4" /> 4</span></td>
+			<td width="10%"><span style="font-family:tahoma,geneva,sans-serif;"><input id="${docID43}" name="${docID43}" type="radio" value="5" /> 5</span></td>
+		</tr>
+		<tr class="spaceUnder">
+			<td><span style="font-family:tahoma,geneva,sans-serif;">${tweet44}</span></td>
+			<td width="10%"><span style="font-family:tahoma,geneva,sans-serif;"><input id="${docID44}" name="${docID44}" type="radio" value="1" /> 1</span></td>
+			<td width="10%"><span style="font-family:tahoma,geneva,sans-serif;"><input id="${docID44}" name="${docID44}" type="radio" value="2" /> 2</span></td>
+			<td width="10%"><span style="font-family:tahoma,geneva,sans-serif;"><input id="${docID44}" name="${docID44}" type="radio" value="3" /> 3</span></td>
+			<td width="10%"><span style="font-family:tahoma,geneva,sans-serif;"><input id="${docID44}" name="${docID44}" type="radio" value="4" /> 4</span></td>
+			<td width="10%"><span style="font-family:tahoma,geneva,sans-serif;"><input id="${docID44}" name="${docID44}" type="radio" value="5" /> 5</span></td>
+		</tr>
+		<tr class="spaceUnder">
+			<td><span style="font-family:tahoma,geneva,sans-serif;">${tweet45}</span></td>
+			<td width="10%"><span style="font-family:tahoma,geneva,sans-serif;"><input id="${docID45}" name="${docID45}" type="radio" value="1" /> 1</span></td>
+			<td width="10%"><span style="font-family:tahoma,geneva,sans-serif;"><input id="${docID45}" name="${docID45}" type="radio" value="2" /> 2</span></td>
+			<td width="10%"><span style="font-family:tahoma,geneva,sans-serif;"><input id="${docID45}" name="${docID45}" type="radio" value="3" /> 3</span></td>
+			<td width="10%"><span style="font-family:tahoma,geneva,sans-serif;"><input id="${docID45}" name="${docID45}" type="radio" value="4" /> 4</span></td>
+			<td width="10%"><span style="font-family:tahoma,geneva,sans-serif;"><input id="${docID45}" name="${docID45}" type="radio" value="5" /> 5</span></td>
+		</tr>
+		<tr class="spaceUnder">
+			<td><span style="font-family:tahoma,geneva,sans-serif;">${tweet46}</span></td>
+			<td width="10%"><span style="font-family:tahoma,geneva,sans-serif;"><input id="${docID46}" name="${docID46}" type="radio" value="1" /> 1</span></td>
+			<td width="10%"><span style="font-family:tahoma,geneva,sans-serif;"><input id="${docID46}" name="${docID46}" type="radio" value="2" /> 2</span></td>
+			<td width="10%"><span style="font-family:tahoma,geneva,sans-serif;"><input id="${docID46}" name="${docID46}" type="radio" value="3" /> 3</span></td>
+			<td width="10%"><span style="font-family:tahoma,geneva,sans-serif;"><input id="${docID46}" name="${docID46}" type="radio" value="4" /> 4</span></td>
+			<td width="10%"><span style="font-family:tahoma,geneva,sans-serif;"><input id="${docID46}" name="${docID46}" type="radio" value="5" /> 5</span></td>
+		</tr>
+		<tr class="spaceUnder">
+			<td><span style="font-family:tahoma,geneva,sans-serif;">${tweet47}</span></td>
+			<td width="10%"><span style="font-family:tahoma,geneva,sans-serif;"><input id="${docID47}" name="${docID47}" type="radio" value="1" /> 1</span></td>
+			<td width="10%"><span style="font-family:tahoma,geneva,sans-serif;"><input id="${docID47}" name="${docID47}" type="radio" value="2" /> 2</span></td>
+			<td width="10%"><span style="font-family:tahoma,geneva,sans-serif;"><input id="${docID47}" name="${docID47}" type="radio" value="3" /> 3</span></td>
+			<td width="10%"><span style="font-family:tahoma,geneva,sans-serif;"><input id="${docID47}" name="${docID47}" type="radio" value="4" /> 4</span></td>
+			<td width="10%"><span style="font-family:tahoma,geneva,sans-serif;"><input id="${docID47}" name="${docID47}" type="radio" value="5" /> 5</span></td>
+		</tr>
+		<tr class="spaceUnder">
+			<td><span style="font-family:tahoma,geneva,sans-serif;">${tweet48}</span></td>
+			<td width="10%"><span style="font-family:tahoma,geneva,sans-serif;"><input id="${docID48}" name="${docID48}" type="radio" value="1" /> 1</span></td>
+			<td width="10%"><span style="font-family:tahoma,geneva,sans-serif;"><input id="${docID48}" name="${docID48}" type="radio" value="2" /> 2</span></td>
+			<td width="10%"><span style="font-family:tahoma,geneva,sans-serif;"><input id="${docID48}" name="${docID48}" type="radio" value="3" /> 3</span></td>
+			<td width="10%"><span style="font-family:tahoma,geneva,sans-serif;"><input id="${docID48}" name="${docID48}" type="radio" value="4" /> 4</span></td>
+			<td width="10%"><span style="font-family:tahoma,geneva,sans-serif;"><input id="${docID48}" name="${docID48}" type="radio" value="5" /> 5</span></td>
+		</tr>
+		<tr class="spaceUnder">
+			<td><span style="font-family:tahoma,geneva,sans-serif;">${tweet49}</span></td>
+			<td width="10%"><span style="font-family:tahoma,geneva,sans-serif;"><input id="${docID49}" name="${docID49}" type="radio" value="1" /> 1</span></td>
+			<td width="10%"><span style="font-family:tahoma,geneva,sans-serif;"><input id="${docID49}" name="${docID49}" type="radio" value="2" /> 2</span></td>
+			<td width="10%"><span style="font-family:tahoma,geneva,sans-serif;"><input id="${docID49}" name="${docID49}" type="radio" value="3" /> 3</span></td>
+			<td width="10%"><span style="font-family:tahoma,geneva,sans-serif;"><input id="${docID49}" name="${docID49}" type="radio" value="4" /> 4</span></td>
+			<td width="10%"><span style="font-family:tahoma,geneva,sans-serif;"><input id="${docID49}" name="${docID49}" type="radio" value="5" /> 5</span></td>
+		</tr>
+	</tbody>
+</table>
+
+<p>*By submitting, you are agreeing to the conditions stated in the <a href="https://drive.google.com/file/d/0B7HFKq7D6npwcVJxWmsxdDJEVXM/edit?usp=sharing" target="_blank">Plain Language Statement</a>.</p>

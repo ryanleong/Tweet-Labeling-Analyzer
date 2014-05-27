@@ -11,11 +11,28 @@ This repository includes:
 	
 	ExporttoAMTSets :	Exports tweets to a CSV file, in sets of 50, to be uploaded to AMT.
 
-	ImportFromAMT :		Imports data from AMT results CSV into database.
+	ImportFromAMT :		Imports result data from AMT results CSV into database.
 	
 	Analyzer :			Calculates aggregate worker scores and does correlation analysis.
 	
 	ExportForGraphs :	Exports data as a CSV file to be opened in Exel, to generate graph.
 
+	form.html :			Holds the form layout of the Amazon Mechanical Turk Survey used in the HITs.
+
 Prior to running the scripts, CouchDB needs to be installed on the machine. The Python-CouchDB package is required to 
-run the scripts, which can be installed by running "sudo apt-get install python-couchdb"
+run the scripts, which can be installed by running "sudo apt-get install python-couchdb". Take note that the scripts 
+have to be run sequentially, in the above order.
+
+Experts HTML form is hosted on an Apache Tomcat server. This requires it to be installed prior to running, in addtion to 
+running the "ImporttoDB.py" state above. The files are in the AMT directory, which is the source code for the Expert 
+labeling forms. This includes:
+
+	nbn.jsp : 			Page with form for Experts to label NBN Tweets.
+
+	flu.jsp : 			Page with form for Experts to label Flu Tweets.
+
+	Store.java :		Inserts gathered NBN labels into db.
+
+	StoreFlu.java :		Inserts gathered Flu labels into db.
+
+	form.war :			The Apache Tomcat server package that is to be deployed.

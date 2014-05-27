@@ -104,7 +104,7 @@ def importFromFile():
         if skipDuplicates == True:
             if inDB(lineParts[1], tweet, db) == False:
                 doc = {'expert_rating': int(lineParts[0]), 'tweet_id' : lineParts[1], 
-                       'value': tweet, 'set': hitSetNum, 'doc_type': 'tweet', 'worker_ratings': []}
+                       'value': tweet, 'set': hitSetNum, 'doc_type': 'tweet', 'worker_ratings': [], 'expert_ratings' : []}
                 
                 db.save(doc)
                 
@@ -116,7 +116,7 @@ def importFromFile():
 
         else:
             doc = {'expert_rating': int(lineParts[0]), 'tweet_id' : lineParts[1], 
-                   'value': tweet, 'set': hitSetNum, 'doc_type': 'tweet', 'worker_ratings': []}
+                   'value': tweet, 'set': hitSetNum, 'doc_type': 'tweet', 'worker_ratings': [], 'expert_ratings' : []}
             
             db.save(doc)
             
