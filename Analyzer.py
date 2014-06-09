@@ -5,11 +5,13 @@ import couchdb
 import json
 import sys
 import math
+import random
 
 # Settings
 databaseIP = 'http://localhost:5984'
 database = ''
 debug = False
+useScoreFinder = True
 
 # get command line arguements
 if len(sys.argv) != 2:
@@ -71,6 +73,7 @@ def removeBias():
                 if rating['worker_id'] == key:
                     totalWorkerRatings += (rating['rating'] - resultValue['average'])
 
+        # offset the len of value as additional field is added on first pass
         offset = 0
         if 'bias' in value:
             offset += 1
@@ -103,19 +106,17 @@ def calculateWorkerExpertise():
                     total = abs(resultValue['average'] - rating['rating'])
 
 
+        # offset the len of value as additional field is added on first pass
         offset = 0
         if 'bias' in value:
             offset += 1
         if 'expertise' in value:
             offset += 1
 
-        value['expertise'] = 1 - (total / (len(value) - offset)) ** 6
-        # print value['expertise'], "\n"
+        value['expertise'] = 1 - (total / (len(value) - offset)) ** 1
 
 
 def aggregateResult():
-    # WorkerExpertise * currAvgScore * 1 or 0
-    # WorkerExpertise * 1 or 0
 
     for tweetKey, tweetDoc in tweetDict.iteritems():
         
@@ -191,7 +192,7 @@ def convertScale(score):
 
 #######################################################
 
-def calculate():
+def calculateAvg():
 
     map_fun = '''function(doc) {
         emit(doc.doc_type,doc); }'''
@@ -201,6 +202,9 @@ def calculate():
 
     # Calculate initial average
     firstAverage(results)
+
+    if useScoreFinder == False:
+        return
 
     # calculate sum of squared
     sumSquare = sumOfSquared()
@@ -230,24 +234,72 @@ def calculate():
 
         sumSquare = temp
 
-    returnToDB()
 
-    ########################################
-    # Calculate correlation
-    ########################################
-    map_fun = '''function(doc) {
-    emit(doc.tweet_id, {"expert_rating" : doc.expert_rating, "average" : doc.average}); }'''
-    
-    results = db.query(map_fun)
+
+def calculateCorrelation():
+
     allData = []
-    
-    for tweet in results:
-        
-        if len(tweet.value) < 2:
-            continue
-        allData.append((tweet.key, tweet.value['expert_rating'], convertScale(tweet.value['average'])))
 
+    for tweetKey, tweetDoc in tweetDict.iteritems():
+        allData.append((tweetDoc['tweet_id'], tweetDoc['expert_rating'], convertScale(tweetDoc['average'])))
+
+    # correlation formula
     getCorrelation(allData)
+
+def exportRatingGraphData():
+    offset = 0.5
+    filename = 'graphs/' + database + '_rating_graph.csv'
+
+    f = open(filename,'w')
+    f.write('expert,worker\n')
+
+    for tweetKey, tweetDoc in tweetDict.iteritems():
+
+        try: 
+            # Convert to 3 point scale
+            workerLabel = convertScale(tweetDoc["average"])
+
+            expert = 0.0
+
+            expert = random.uniform((float(tweetDoc['expert_rating']) - offset), (float(tweetDoc['expert_rating']) + offset))
+            workerLabel = random.uniform((workerLabel - offset), (workerLabel + offset))
+
+            # # add small random offset for graph plotting
+            # if tweetDoc['expert_rating'] != 0:
+            #     expert = random.uniform((float(tweetDoc['expert_rating']) - offset), (float(tweetDoc['expert_rating']) + offset))
+            # elif tweetDoc['expert_rating'] == 2:
+            #     expert = random.uniform((float(tweetDoc['expert_rating']) - offset), float(tweetDoc['expert_rating']))
+            # else:
+            #     expert = random.uniform(float(tweetDoc['expert_rating']), (float(tweetDoc['expert_rating']) + offset))
+                
+            # if workerLabel != 0:
+            #     workerLabel = random.uniform((workerLabel - offset), (workerLabel + offset))
+            # elif tweetDoc['expert_rating'] == 2:
+            #     workerLabel = random.uniform((workerLabel - offset), workerLabel)
+            # else:
+            #     workerLabel = random.uniform(workerLabel, (workerLabel + offset))
+
+            output = "%f,%f\n" % (expert, workerLabel)
+            f.write(output)
+        except:
+            continue
+
+    f.close()
+
+def exportWorkerExpertiseGraph():
+    filename = 'graphs/' + database + '_worker_expertise_graph.csv'
+
+    f = open(filename,'w')
+    f.write('workerID,expertise\n')
+
+    for key, value in workersDict.iteritems():
+        try:
+            output = "%s,%s\n" % (key, value['expertise'])
+            f.write(output)
+        except:
+            continue
+
+    f.close()
 
 if __name__ == "__main__":
     # set up connection to db server
@@ -262,7 +314,12 @@ if __name__ == "__main__":
     except:
         print 'No such database.'
 
-    calculate()
+    calculateAvg()
+    calculateCorrelation()
+    exportRatingGraphData()
+    exportWorkerExpertiseGraph()
+
+    ################################################
 
     print "Calculating Flu Worker to Expert Correlation.."
 
@@ -275,6 +332,7 @@ if __name__ == "__main__":
     except:
         print 'No such database.'
 
-    calculate()
-
-
+    calculateAvg()
+    calculateCorrelation()
+    exportRatingGraphData()
+    exportWorkerExpertiseGraph()
