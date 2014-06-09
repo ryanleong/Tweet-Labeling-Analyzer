@@ -13,9 +13,7 @@ This repository includes:
 
 	ImportFromAMT :		Imports result data from AMT results CSV into database.
 	
-	Analyzer :			Calculates aggregate worker scores and does correlation analysis.
-	
-	ExportForGraphs :	Exports data as a CSV file to be opened in Exel, to generate graph.
+	Analyzer :			Calculates aggregate worker scores and does correlation analysis. Also exports data for graphs.
 
 	form.html :			Holds the form layout of the Amazon Mechanical Turk Survey used in the HITs.
 

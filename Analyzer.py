@@ -13,6 +13,10 @@ database = ''
 debug = False
 useScoreFinder = True
 
+# 0 for the conventional method
+# 1 for the proposed method
+mappingMethod = 0
+
 # get command line arguements
 if len(sys.argv) != 2:
     print 'python WorkerScoring.py <database_ip>'
@@ -183,12 +187,25 @@ def getCorrelation(allData):
 
 def convertScale(score):
 
-    if score < 2.5:
-        return 0
-    elif score >= 2.5 and score < 3.5:
-        return 1
+    # Use proposed method
+    if mappingMethod == 1:
+        if score < 1.5:
+            return 0
+        elif score >= 1.5 and score < 4.5:
+            return 1
+        else:
+            return 2
+    
+    # Use conventional method
     else:
-        return 2
+        if score < 2.5:
+            return 0
+        elif score >= 2.5 and score < 3.5:
+            return 1
+        else:
+            return 2
+
+
 
 #######################################################
 
@@ -259,30 +276,17 @@ def exportRatingGraphData():
             # Convert to 3 point scale
             workerLabel = convertScale(tweetDoc["average"])
 
+            # Add offset to be displayed on scatter plot
             expert = 0.0
 
             expert = random.uniform((float(tweetDoc['expert_rating']) - offset), (float(tweetDoc['expert_rating']) + offset))
             workerLabel = random.uniform((workerLabel - offset), (workerLabel + offset))
 
-            # # add small random offset for graph plotting
-            # if tweetDoc['expert_rating'] != 0:
-            #     expert = random.uniform((float(tweetDoc['expert_rating']) - offset), (float(tweetDoc['expert_rating']) + offset))
-            # elif tweetDoc['expert_rating'] == 2:
-            #     expert = random.uniform((float(tweetDoc['expert_rating']) - offset), float(tweetDoc['expert_rating']))
-            # else:
-            #     expert = random.uniform(float(tweetDoc['expert_rating']), (float(tweetDoc['expert_rating']) + offset))
-                
-            # if workerLabel != 0:
-            #     workerLabel = random.uniform((workerLabel - offset), (workerLabel + offset))
-            # elif tweetDoc['expert_rating'] == 2:
-            #     workerLabel = random.uniform((workerLabel - offset), workerLabel)
-            # else:
-            #     workerLabel = random.uniform(workerLabel, (workerLabel + offset))
-
             output = "%f,%f\n" % (expert, workerLabel)
             f.write(output)
         except:
             continue
+
 
     f.close()
 
